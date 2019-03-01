@@ -1,7 +1,7 @@
-var Game = function(level){
+var Game = function(dimension,mines){
 
     var elements;
-    this.levels = {
+    /*this.levels = {
         beginner: {
            dimension: 9,
            mineCount: 10
@@ -15,9 +15,9 @@ var Game = function(level){
            mineCount: 80
         }
      }
-
+     */
      this.element={};
-     this.element.level = document.querySelector(".game-level");
+   //  this.element.level = document.querySelector(".game-level");
      this.element.mine = document.querySelector("#mines-count");
      this.element.time = document.querySelector("#game-time");
      this.element.restart = document.querySelector(".game-restart");
@@ -31,8 +31,8 @@ var Game = function(level){
      */
 
     this.timer = null; /* time interval*/
-    this.dimension = 0;
-    this.mineCount = 0;
+    this.dimension = dimension;
+    this.mineCount = mines;
     this.time = 0;
 
     this.isGameOver = false;
@@ -40,13 +40,13 @@ var Game = function(level){
     
     this.leftMineCount = this.mineCount;
 
-    this.setLevel(level);
+    //this.setLevel(level);
     this.board = new Board(this.element.board);
 
     this.init();
 
 }
-
+/*
 Game.prototype.setLevel = function(level) {
     var option;
  
@@ -56,6 +56,7 @@ Game.prototype.setLevel = function(level) {
     option = this.element.level.querySelector('option[value="'+ level +'"]');
     option.selected = true;
  }
+ */
 
  Game.prototype.startTimer = function() {
     this.timer = setInterval(function() {
