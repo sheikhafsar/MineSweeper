@@ -152,10 +152,27 @@ header{
   
 }
 
-.game-restart > img{
-  width: 1.5em;
-  height: 1.5em;
+.game-restart {
+  /*width: 1.5em;*/
+  height: 2em;
+  background-image: url(MineSweeperImages/MineSweeperImages/btnsmile.gif);
 }
+
+.win-smile{
+  height: 2em;
+  background-image: url(MineSweeperImages/MineSweeperImages/btncool.gif);
+}
+
+.dead-smile{
+  height: 2em;
+  background-image: url(MineSweeperImages/MineSweeperImages/btndead.gif);
+}
+
+.care-smile{
+  height: 2em;
+  background-image: url(MineSweeperImages/MineSweeperImages/btnscare.gif);
+}
+
 
 .mines{
  /* float:left;*/
@@ -163,10 +180,6 @@ header{
 
 .timer{
 /*float:right;*/
-}
-
-.game-restart{
-  
 }
 
 span{
@@ -213,7 +226,7 @@ display: flex;
 
 .block.is-revealed,
 .block:hover {
-   background: #ddd;
+  /* background: #ddd;*/
 }
 /*blocks revealed with numbers*/
 .block.is-one{
@@ -270,7 +283,7 @@ display: flex;
 }
 
 .blast{
-  background: url(MineSweeperImages/MineSweeperImages/sqt1.gif);
+  background: url(MineSweeperImages/MineSweeperImages/fxy1.gif);
 }
 
 /* MAin module*/

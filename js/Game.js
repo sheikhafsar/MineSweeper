@@ -26,7 +26,6 @@ var Game = function(dimension,mines){
 
     this.board = new Board(this.element.board);
 
-    this.blast=0;
     this.blastCount=0;
     this.init();
 
@@ -90,30 +89,28 @@ Game.prototype.leftClickHandler = function(event) {
       }
       else if(!block.isMine){
          block.reveal();
+
+         console.log("block.mineCount:"+block.mineCount);
+         if(block.mineCount>1){
+            console.log("mine is more than 1")
+
+            this.element.restart.classList.add('care-smile');
+         }
+         else {
+            this.element.restart.classList.remove('care-smile');
+         }
+
          if (this.isWin()) {
+            this.element.restart.classList.add('win-smile');
             return this.gameover(true);
          }
       }
       else{
          //blast mines
-         
-         //this.blast=setInterval(this.blastMines,2000);
-         var flag;
-         var blastCount=0;
-         this.stopTimer();
-         console.log("block:"+block.isMine);
-         flag=setInterval(function(){
-            if (blastCount == 7) {
-               clearInterval(flag);
-              
-               return this.gameover(false);
-             } else {
-               blastCount++; 
-               block.element.classList.add('blast')
-               console.log("blastCount"+blastCount);
-             }
-         }.bind(this),1000)
-
+         this.element.restart.classList.remove('care-smile');
+         this.element.restart.classList.add('dead-smile');
+         this.blastMines(block);
+     
          //return this.gameover(false);
       }
   }
@@ -130,7 +127,6 @@ Game.prototype.findBlock = function(event) {
 Game.prototype.isWin = function() {
    console.log("unRevealedBlocks Length:"+this.board.unRevealedBlocks().length);
    return this.board.unRevealedBlocks().length == this.mineCount;
-   //return this.board.unRevealedBlocks().length <= this.mineCount;
 }
 
 Game.prototype.gameover = function(win) {
@@ -149,12 +145,31 @@ Game.prototype.gameover = function(win) {
    
 }
 
-Game.prototype.blastMines=function(){
-   if (this.blastCount == 7) {
-      clearInterval(this.blast);
-      return this.gameover(false);
-    } else {
-      this.blastCount++; 
-      console.log("blastCount"+this.blastCount);
-    }
+Game.prototype.blastMines = function (block) {
+   var flag;
+   var blastCount = 0;
+   var Mines = this.board.Mines();
+   console.log("MinesLength:" + Mines.length);
+   this.stopTimer();
+   //block.reveal();
+   block.element.classList.add('blast');
+
+   console.log("block:" + block.isMine);
+
+   flag = setInterval(function () {
+      if (blastCount == this.mineCount) {
+         clearInterval(flag);
+         return this.gameover(false);
+      } else {
+         console.log("MineCount:" + this.mineCount);
+         for (blastCount; blastCount < this.mineCount;) {
+            Mines[blastCount++].element.classList.add('blast');
+            console.log("mine");
+            console.log("blastCount" + blastCount);
+            break;
+         }
+      }
+   }.bind(this), 500);
+
+
 }

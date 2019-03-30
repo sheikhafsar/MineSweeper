@@ -14,6 +14,7 @@ var Block = function(element,x,y){
 
      this.setEmpty = function() {
         this.isEmpty = true;
+        
      }
   
      this.setMineCount = function(number) {
@@ -57,6 +58,7 @@ var Block = function(element,x,y){
       }
 
       if (this.isEmpty) {
+         this.mineCount=0;
          return this.element.classList.add('is-empty');
       }
 

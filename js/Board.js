@@ -184,3 +184,9 @@ Board.prototype.unRevealedBlocks = function() {
       return ! block.isRevealed;
    });
 }
+
+Board.prototype.Mines = function() {
+   return this.reducedBlocks().filter(function(block) {
+      return  block.isMine;
+   });
+}
