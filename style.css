@@ -74,10 +74,17 @@ Layout Styles
   }
 
   /* continue to new line*/
-  .clearfix {
-    clear: both;
- }
 
+  .clearfix {
+   clear: both;  
+ }
+/*
+ .clear-fix:before,
+.clear-fix:after {
+  flex-basis: 0;
+  order: 1;
+}
+*/
 
 /***************************
 ****************************
@@ -99,6 +106,7 @@ header{
 
 /*Game Module*/
 
+/*
 .game-container{
  background-color: rgb(247, 248, 248);
  position: relative;
@@ -111,11 +119,12 @@ header{
   position: relative;
   top: -1em;
 }
-
+*/
 
 .game-screen{
   /*margin:auto;*/
   background-color: rgb(211, 223, 222); 
+  display: inline-block;
 }
 
 .game-header{
@@ -126,7 +135,9 @@ header{
 }
 
 .game-screen .game-header {
-  display: flex; 
+  
+  display: flex;
+  
 }
 
 .game-header div{
@@ -136,7 +147,9 @@ header{
 }
 
 .game-screen .game-header > div {
+  
   flex-grow: 1;
+  
 }
 
 .game-restart > img{
@@ -163,6 +176,12 @@ span{
 .game-board{
 background-color: gray;
 clear: both;
+
+max-width: 500px;
+max-height: 500px;
+/*
+display: flex;
+*/
 }
 
 .block {
@@ -170,22 +189,88 @@ clear: both;
   background-size: contain !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   line-height: 25px;
   float: none;
   text-align: center;
   box-sizing: border-box;
   display: inline-block;
-  border-radius: .2em;
   margin: .2rem; 
 
   font-weight: bold;
   cursor: pointer;
+/*
+  flex-grow: 1;
+  flex-shrink: 1;
+  */
 }
+
 
 .game-footer{
 
+}
+
+.block.is-revealed,
+.block:hover {
+   background: #ddd;
+}
+/*blocks revealed with numbers*/
+.block.is-one{
+  background-image: url(MineSweeperImages/MineSweeperImages/sq1.gif);
+}
+.block.is-two{
+  background-image: url(MineSweeperImages/MineSweeperImages/sq2.gif);
+}
+.block.is-three{
+  background-image: url(MineSweeperImages/MineSweeperImages/sq3.gif);
+}
+.block.is-four{
+  background-image: url(MineSweeperImages/MineSweeperImages/sq4.gif);
+}
+.block.is-five{
+  background-image: url(MineSweeperImages/MineSweeperImages/sq5.gif);
+}
+.block.is-six{
+  background-image: url(MineSweeperImages/MineSweeperImages/sq6.gif);
+}
+.block.is-seven{
+  background-image: url(MineSweeperImages/MineSweeperImages/sq7.gif);
+}
+.block.is-eight{
+  background-image: url(MineSweeperImages/MineSweeperImages/sq8.gif);
+}
+
+.block.is-mine {
+   background-image: url(MineSweeperImages/MineSweeperImages/mine.gif);
+}
+
+.block.is-mine.is-clicked {
+   background-color: #d44646;
+}
+
+.block.is-flagged {
+   background: url(MineSweeperImages/MineSweeperImages/sqt1.gif);
+}
+
+.block.is-empty {
+   background: rgba(239, 189, 98, 0.27);
+}
+
+.block.is-low {
+   color: #58a4de;
+}
+
+.block.is-medium {
+   color: #52c5a7;
+}
+
+.block.is-high {
+   color: #d44646;
+}
+
+.blast{
+  background: url(MineSweeperImages/MineSweeperImages/sqt1.gif);
 }
 
 /* MAin module*/
@@ -199,24 +284,3 @@ footer{
   font-family: magra;
   height: 10%;
 }
-
-/***************************
-****************************
-Theme Styles
-****************************
-***************************/
-.background-primary {
-    background: #F7941E;
-  }
-  .background-secondary {
-    background: #00AEEF;
-  }
-  .background-tertiary {
-    background: #8DC63F;
-  }
-  .background-quaternary {
-    background: #594a42;
-  }
-  .background-quinary {
-    background: #e7e1d7;
-  }
