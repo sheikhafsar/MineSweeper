@@ -2,20 +2,25 @@ var Block = function(element,x,y){
     this.element = element;
     this.x = x;
     this.y = y;
+    this.isEmpty = false;
     this.isMine = false;
     this.isRevealed = false;
     this.isFlagged = false;
-    this.isEmpty = false;
     this.mineCount = 0;
+
+    this.setEmpty = function() {
+      this.isEmpty = true;
+      
+   }
 
     this.setMine = function() {
         this.isMine = true;
-     }
+    }
 
-     this.setEmpty = function() {
-        this.isEmpty = true;
-        
-     }
+    this.setRevealed = function() {
+      this.isRevealed = true;
+      this.element.classList.add('is-revealed');
+   }
   
      this.setMineCount = function(number) {
         this.mineCount = number;
@@ -31,38 +36,19 @@ var Block = function(element,x,y){
       this.element.classList.remove('is-flagged');
    }
 
-     this.setRevealed = function() {
-      this.isRevealed = true;
-      this.element.classList.add('is-revealed');
-   }
-
-   /*
-   this.removeBlast = function(ele){
-      ele.classList.remove('blast');
-   } 
-   */
    this.reveal = function() {
       var className;
 
       this.setRevealed();
 
       if (this.isMine) {
-
-         //bursting gif
-       //  this.element.classList.add('blast');
-         //delay
-      //   setTimeout(this.removeBlast(this.element),2000);
-         //remove bursting gif
-
-         return this.element.classList.add('is-mine');
+        return this.element.classList.add('is-mine');
       }
 
       if (this.isEmpty) {
          this.mineCount=0;
          return this.element.classList.add('is-empty');
       }
-
-      //this.element.innerHTML = this.mineCount;
 
       if (this.mineCount == 1) {
          className = 'is-one';

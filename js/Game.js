@@ -22,7 +22,7 @@ var Game = function(dimension,mines){
     this.isGameOver = false;
     this.initialize = false;
     
-    this.leftMineCount = this.mineCount;
+    this.leftMine = this.mineCount;
 
     this.board = new Board(this.element.board);
 
@@ -47,28 +47,39 @@ var Game = function(dimension,mines){
     this.time = 0;
     this.element.time.textContent = 0;
     this.element.mine.textContent = this.mineCount;
-    this.leftMineCount = this.mineCount;
+    this.leftMine = this.mineCount;
  
     this.stopTimer();
     this.board.init(this.dimension, this.mineCount);
     
     if (! this.initialize) {
-       this.eventListener();
-    }
+      this.element.restart.addEventListener('click', this.restartHandler.bind(this));
+      this.board.element.addEventListener('click', this.leftClickHandler.bind(this));
+      this.board.element.addEventListener('contextmenu', this.rightClickHandler.bind(this));
+   }
  
     this.initialize = true;
+
+    //developer window
+    var mines = this.board.Mines();
+    mines.forEach(mineblock => {
+       console.log("mineBlock["+mineblock.x+"]"+"["+mineblock.y+"]");
+    });
+
+    var empty = this.board.emptyBlock();
+    empty.forEach(emptyBlock => {
+      console.log("emptyBlock["+emptyBlock.x+"]"+"["+emptyBlock.y+"]");
+   });
+
+   var two = this.board.block2();
+    two.forEach(block2 => {
+      console.log("block2["+block2.x+"]"+"["+block2.y+"]");
+   });
  }
 
 
- Game.prototype.eventListener = function() {
-   this.element.restart.addEventListener('click', this.restartHandler.bind(this));
-   this.board.element.addEventListener('click', this.leftClickHandler.bind(this));
-   //this.board.element.addEventListener('contextmenu', this.rightClickHandler.bind(this));
-}
-
 Game.prototype.restartHandler = function() {
    location.reload();
-  // this.init();
 }
 
 Game.prototype.leftClickHandler = function(event) {
@@ -86,21 +97,26 @@ Game.prototype.leftClickHandler = function(event) {
       }
       else if (block.isEmpty) {
          this.board.revealNeighbourBlocks(block);
+         this.element.restart.classList.remove('care-smile');
+         this.element.restart.classList.add('default-smile');
       }
       else if(!block.isMine){
          block.reveal();
 
          console.log("block.mineCount:"+block.mineCount);
          if(block.mineCount>1){
-            console.log("mine is more than 1")
+            console.log("mine is more than 1");
 
             this.element.restart.classList.add('care-smile');
          }
          else {
+            console.log("block.mineCount: "+block.mineCount);
             this.element.restart.classList.remove('care-smile');
          }
 
          if (this.isWin()) {
+            this.element.restart.classList.remove('default-smile');
+            this.element.restart.classList.remove('care-smile');
             this.element.restart.classList.add('win-smile');
             return this.gameover(true);
          }
@@ -110,8 +126,6 @@ Game.prototype.leftClickHandler = function(event) {
          this.element.restart.classList.remove('care-smile');
          this.element.restart.classList.add('dead-smile');
          this.blastMines(block);
-     
-         //return this.gameover(false);
       }
   }
    
@@ -149,6 +163,7 @@ Game.prototype.blastMines = function (block) {
    var flag;
    var blastCount = 0;
    var Mines = this.board.Mines();
+   
    console.log("MinesLength:" + Mines.length);
    this.stopTimer();
    //block.reveal();
@@ -170,6 +185,26 @@ Game.prototype.blastMines = function (block) {
          }
       }
    }.bind(this), 500);
-
-
 }
+
+Game.prototype.rightClickHandler = function(event) {
+   event.preventDefault();
+
+   if(event.target.classList.contains('block'))
+   {
+   var block = this.findBlock(event);
+
+      if (block.isFlagged) {
+         this.leftMine++;
+         this.element.mine.textContent = this.leftMine;
+         block.setUnflagged();
+      } 
+      else 
+      {
+         this.leftMine--;
+         this.element.mine.textContent = this.leftMine;
+         block.setFlagged();
+      }
+   }
+}
+

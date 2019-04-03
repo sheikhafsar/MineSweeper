@@ -185,8 +185,23 @@ Board.prototype.unRevealedBlocks = function() {
    });
 }
 
+//return mine blocks
 Board.prototype.Mines = function() {
    return this.reducedBlocks().filter(function(block) {
       return  block.isMine;
+   });
+}
+
+//return empty blocks
+Board.prototype.emptyBlock = function() {
+   return this.reducedBlocks().filter(function(block) {
+      return  block.isEmpty;
+   });
+}
+
+//return blocks surrounded by two mines
+Board.prototype.block2 = function() {
+   return this.reducedBlocks().filter(function(block) {
+      return  block.mineCount==2;
    });
 }
