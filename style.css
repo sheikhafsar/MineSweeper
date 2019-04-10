@@ -116,13 +116,9 @@ header{
   background-image: url(MineSweeperImages/MineSweeperImages/btnscare.gif);
 }
 
-
-.mines{
- /* float:left;*/
-}
-
-.timer{
-/*float:right;*/
+#mines-count,#game-time{
+  border: 0.1rem solid black;
+  padding: 0.2rem;
 }
 
 span{
