@@ -7,6 +7,9 @@ var Game = function(dimension,mines){
      this.element.time = document.querySelector("#game-time");
      this.element.restart = document.querySelector(".game-restart");
      this.element.board = document.querySelector(".game-board");
+
+     var popAudio = document.getElementById("popAudio"); 
+     popAudio.playbackRate=2.0;
 /*
      console.log("element.mine:"+this.element.mine);
      console.log("element.time:"+this.element.time);
@@ -43,7 +46,7 @@ var Game = function(dimension,mines){
  }
 
  Game.prototype.init = function() {
-   // this.isGameOver = false;
+  
     this.time = 0;
     this.element.time.textContent = 0;
     this.element.mine.textContent = this.mineCount;
@@ -60,7 +63,8 @@ var Game = function(dimension,mines){
  
     this.initialize = true;
 
-    //developer window
+    //output to console block data for cheating
+    
     var mines = this.board.Mines();
     mines.forEach(mineblock => {
        console.log("mineBlock["+mineblock.x+"]"+"["+mineblock.y+"]");
@@ -167,8 +171,10 @@ Game.prototype.blastMines = function (block) {
    console.log("MinesLength:" + Mines.length);
    this.stopTimer();
    //block.reveal();
-   block.element.classList.add('blast');
 
+   popAudio.play();
+   block.element.classList.add('blast');
+  
    console.log("block:" + block.isMine);
 
    flag = setInterval(function () {
@@ -178,13 +184,24 @@ Game.prototype.blastMines = function (block) {
       } else {
          console.log("MineCount:" + this.mineCount);
          for (blastCount; blastCount < this.mineCount;) {
-            Mines[blastCount++].element.classList.add('blast');
-            console.log("mine");
-            console.log("blastCount" + blastCount);
-            break;
+            if( !Mines[blastCount].element.classList.contains('blast')){
+               
+               if(Mines[blastCount].isFlagged){
+                  Mines[blastCount].setUnflagged();
+               }
+               popAudio.play();
+               Mines[blastCount].element.classList.add('blast');
+            }
+           
+               blastCount++;
+             
+               console.log("mine");
+               console.log("blastCount" + blastCount);
+               break; 
          }
       }
-   }.bind(this), 500);
+   }.bind(this), 2000);
+
 }
 
 Game.prototype.rightClickHandler = function(event) {

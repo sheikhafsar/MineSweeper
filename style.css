@@ -33,19 +33,10 @@ Layout Styles
 
 }
 
-
   /* continue to new line*/
-
   .clearfix {
    clear: both;
  }
-/*
- .clear-fix:before,
-.clear-fix:after {
-  flex-basis: 0;
-  order: 1;
-}
-*/
 
 /***************************
 ****************************
@@ -63,7 +54,6 @@ header{
 /*Game Module*/
 
 .game-screen{
-  /*margin:auto;*/
   background-color: rgb(211, 223, 222);
   display: inline-block;
 }
@@ -71,8 +61,6 @@ header{
 .game-header{
   color: #090909;
   padding :1rem;
-  /*margin:auto;*/
- /* background-color: aquamarine;*/
 }
 
 .game-screen .game-header {
@@ -128,13 +116,9 @@ span{
 .game-board{
 background-color: gray;
 clear: both;
-
 /*
 max-width: 500px;
 max-height: 500px;
-*/
-/*
-display: flex;
 */
 }
 
