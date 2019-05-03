@@ -52,7 +52,7 @@ var Game = function(dimension,mines){
     this.element.mine.textContent = this.mineCount;
     this.leftMine = this.mineCount;
  
-    this.stopTimer();
+    
     this.board.init(this.dimension, this.mineCount);
     
     if (! this.initialize) {
@@ -63,7 +63,7 @@ var Game = function(dimension,mines){
  
     this.initialize = true;
 
-    //output to console block data for cheating
+    //output to console, block data for cheating
     
     var mines = this.board.Mines();
     mines.forEach(mineblock => {

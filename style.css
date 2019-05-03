@@ -4,7 +4,7 @@ Base Styles
 ****************************
 ***************************/
 
-/* Change all elements to use border-box */
+
 html,body {
     width: 100%;
     height: 100%;
@@ -66,42 +66,42 @@ header{
 .game-screen .game-header {
 
   display: flex;
-
+  /* justify-content: space-between; */
 }
 
 .game-header div{
  display: inline;
- justify-content: space-between;
-
+ align-self: center;
 }
 
-.game-screen .game-header > div {
+.game-screen .game-header  div {
 
   flex-grow: 1;
 
 }
 
 .game-restart {
-  /*width: 1.5em;*/
-  height: 2em;
+  width: 1rem;
+  height: 2rem;
   background-size: contain !important;
   background-repeat: no-repeat;
+  
 }
 
 .default-smile{
-  background-image: url(MineSweeperImages/MineSweeperImages/btnsmile.gif);
+  background-image: url(MineSweeperImages/btnsmile.gif);
 }
 
 .win-smile{
-  background-image: url(MineSweeperImages/MineSweeperImages/btncool.gif);
+  background-image: url(MineSweeperImages/btncool.gif);
 }
 
 .dead-smile{
-  background-image: url(MineSweeperImages/MineSweeperImages/btndead.gif);
+  background-image: url(MineSweeperImages/btndead.gif);
 }
 
 .care-smile{
-  background-image: url(MineSweeperImages/MineSweeperImages/btnscare.gif);
+  background-image: url(MineSweeperImages/btnscare.gif);
 }
 
 #mines-count,#game-time{
@@ -116,10 +116,6 @@ span{
 .game-board{
 background-color: gray;
 clear: both;
-/*
-max-width: 500px;
-max-height: 500px;
-*/
 }
 
 .block {
@@ -137,45 +133,41 @@ max-height: 500px;
 
   font-weight: bold;
   cursor: pointer;
-/*
-  flex-grow: 1;
-  flex-shrink: 1;
-  */
 }
 
 
 /*blocks revealed with numbers*/
 .block.is-one{
-  background-image: url(MineSweeperImages/MineSweeperImages/sq1.gif);
+  background-image: url(MineSweeperImages/sq1.gif);
 }
 .block.is-two{
-  background-image: url(MineSweeperImages/MineSweeperImages/sq2.gif);
+  background-image: url(MineSweeperImages/sq2.gif);
 }
 .block.is-three{
-  background-image: url(MineSweeperImages/MineSweeperImages/sq3.gif);
+  background-image: url(MineSweeperImages/sq3.gif);
 }
 .block.is-four{
-  background-image: url(MineSweeperImages/MineSweeperImages/sq4.gif);
+  background-image: url(MineSweeperImages/sq4.gif);
 }
 .block.is-five{
-  background-image: url(MineSweeperImages/MineSweeperImages/sq5.gif);
+  background-image: url(MineSweeperImages/sq5.gif);
 }
 .block.is-six{
-  background-image: url(MineSweeperImages/MineSweeperImages/sq6.gif);
+  background-image: url(MineSweeperImages/sq6.gif);
 }
 .block.is-seven{
-  background-image: url(MineSweeperImages/MineSweeperImages/sq7.gif);
+  background-image: url(MineSweeperImages/sq7.gif);
 }
 .block.is-eight{
-  background-image: url(MineSweeperImages/MineSweeperImages/sq8.gif);
+  background-image: url(MineSweeperImages/sq8.gif);
 }
 
 .block.is-mine {
-   background-image: url(MineSweeperImages/MineSweeperImages/mine.gif);
+   background-image: url(MineSweeperImages/mine.gif);
 }
 
 .block.is-flagged {
-   background: url(MineSweeperImages/MineSweeperImages/sqt1.gif);
+   background: url(MineSweeperImages/sqt1.gif);
 }
 
 .block.is-empty {
@@ -183,7 +175,7 @@ max-height: 500px;
 }
 
 .blast{
-  background: url(MineSweeperImages/MineSweeperImages/fxy1.gif);
+  background: url(MineSweeperImages/fxy1.gif);
 }
 
 

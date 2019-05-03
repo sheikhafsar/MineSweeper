@@ -109,42 +109,42 @@ Board.prototype.reveal = function() {
 Board.prototype.findNeighbours = function(block) {
    var blocks = [];
 
-   // top neighbour blocks
+   // top neighbour block
    if (block.y != 0) {
       blocks.push(this.blocks[block.y - 1][block.x]);
    }
 
-   // bottom neighbour blocks
+   // bottom neighbour block
    if (block.y != this.dimension - 1) {
       blocks.push(this.blocks[block.y + 1][block.x]);
    }
 
-   // left neighbour blocks
+   // left neighbour block
    if (block.x != 0) {
       blocks.push(this.blocks[block.y][block.x - 1]);
    }
 
-   // right neighbour blocks
+   // right neighbour block
    if (block.x != this.dimension - 1) {
       blocks.push(this.blocks[block.y][block.x + 1]);
    }
 
-   // upper left neighbour blocks
+   // upper left neighbour block
    if (block.y != 0 && block.x != 0) {
       blocks.push(this.blocks[block.y - 1][block.x - 1]);
    }
 
-   // upper right neighbour blocks
+   // upper right neighbour block
    if (block.y != 0 && block.x != this.dimension - 1) {
       blocks.push(this.blocks[block.y - 1][block.x + 1]);
    }
 
-   // lower left neighbour blocks
+   // lower left neighbour block
    if (block.y != this.dimension - 1 && block.x != 0) {
       blocks.push(this.blocks[block.y + 1][block.x - 1]);
    }
 
-   // lower right neighbour blocks
+   // lower right neighbour block
    if (block.y != this.dimension - 1 && block.x != this.dimension - 1) {
       blocks.push(this.blocks[block.y + 1][block.x + 1]);
    }
